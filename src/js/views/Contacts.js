@@ -15,7 +15,7 @@ export const Contacts = () => {
 		<div className="container">
 			<div className="row">
 				<div className="col">
-					<select name="agenda" className="form-control" onChange={actions.handleChangeAgenda}>
+					<select name="agenda" className="form-control mt-5" onChange={actions.handleChangeAgenda}>
 						<option value="">SELECCIONE</option>
 						{!!store.agendas &&
 							store.agendas.map((agenda, i) => {
@@ -26,6 +26,10 @@ export const Contacts = () => {
 								);
 							})}
 					</select>
+					<br />
+					<button className="btn btn-info btn-block" onClick={actions.loadContactByAgenda}>
+						Load Contacts
+					</button>
 				</div>
 			</div>
 			<div>

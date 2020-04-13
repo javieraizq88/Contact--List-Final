@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			handleChangeAgenda: e => {
 				const { name, value } = e.target;
 				setStore({
-					[name]: value
+					[name]: value ? value : null
 				});
 			},
 
@@ -27,6 +27,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 							agendas: data
 						});
 					});
+			},
+
+			loadContactByAgenda: () => {
+				const store = getStore();
+				if (store.agenda !== null) {
+					fetch(store.apiURL + "/agenda/" + store.agenda)
+						.then(resp => resp.json())
+						.then(data => {
+							setStore({
+								contacts: data
+							});
+						});
+				} else {
+					alert("Debe seleccionar una agenda");
+				}
 			}
 		}
 	};
