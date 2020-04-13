@@ -15,7 +15,11 @@ export const Contacts = () => {
 		<div className="container">
 			<div className="row">
 				<div className="col">
-					<select name="agenda" className="form-control mt-5" onChange={actions.handleChangeAgenda}>
+					<select
+						name="agenda"
+						className="form-control mt-5"
+						onChange={actions.handleChangeAgenda}
+						value={store.agenda}>
 						<option value="">SELECCIONE</option>
 						{!!store.agendas &&
 							store.agendas.map((agenda, i) => {
@@ -40,10 +44,16 @@ export const Contacts = () => {
 				</p>
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 					<ul className="list-group pull-down" id="contact-list">
-						<ContactCard onDelete={() => setState({ showModal: true })} />
-						<ContactCard />
-						<ContactCard />
-						<ContactCard />
+						{!!store.contacts &&
+							store.contacts.map((contact, i) => {
+								return (
+									<ContactCard
+										key={i}
+										onDelete={() => setState({ showModal: true })}
+										contact={contact}
+									/>
+								);
+							})}
 					</ul>
 				</div>
 			</div>
