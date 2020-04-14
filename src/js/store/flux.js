@@ -44,6 +44,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			addContact: data => {
+				const store = getStore();
+				fetch(store.apiURL + "/", {
+					method: "POST",
+					body: JSON.stringify(data),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						getActions().loadContactByAgenda();
+					});
+			},
+
 			editContact: (url, data) => {
 				const store = getStore();
 				fetch(store.apiURL + url, {
@@ -59,11 +74,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			addContact: data => {
+			deleteContact: url => {
 				const store = getStore();
-				fetch(store.apiURL + "/", {
-					method: "POST",
-					body: JSON.stringify(data),
+				fetch(store.apiURL + url, {
+					method: "DELETE",
 					headers: {
 						"Content-Type": "application/json"
 					}
