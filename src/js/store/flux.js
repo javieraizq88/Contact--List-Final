@@ -42,6 +42,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					alert("Debe seleccionar una agenda");
 				}
+			},
+			addContact: (url, data) => {
+				fetch(store, apiURL + url, {
+					method: "POST",
+					body: JSON.stringify(data),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						getActions().loadContactByAgenda();
+					});
+			},
+
+			editContact: (url, data) => {
+				const store = getStore(); //para saber la agenda preseleccionada
+				fetch(store, apiURL + url, {
+					method: "PUT",
+					body: JSON.stringify(data),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						getActions().getAgendas("/agenda/" + store.agenda);
+					});
 			}
 		}
 	};
