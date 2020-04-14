@@ -20,7 +20,7 @@ export const Contacts = () => {
 						className="form-control mt-5"
 						onChange={actions.handleChangeAgenda}
 						value={store.agenda}>
-						<option value="">SELECCIONE</option>
+						<option value={null}>SELECCIONE</option>
 						{!!store.agendas &&
 							store.agendas.map((agenda, i) => {
 								return (

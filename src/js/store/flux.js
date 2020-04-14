@@ -43,6 +43,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert("Debe seleccionar una agenda");
 				}
 			},
+
 			editContact: (url, data) => {
 				const store = getStore();
 				fetch(store.apiURL + url, {
@@ -57,8 +58,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						getActions().loadContactByAgenda();
 					});
 			},
-			addContact: (url, data) => {
-				fetch(store.apiURL + url, {
+
+			addContact: data => {
+				const store = getStore();
+				fetch(store.apiURL + "/", {
 					method: "POST",
 					body: JSON.stringify(data),
 					headers: {
@@ -67,9 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(resp => resp.json())
 					.then(data => {
-						setStore({
-							contacts: data
-						});
+						getActions().loadContactByAgenda();
 					});
 			}
 		}
