@@ -87,6 +87,7 @@ export const AddContact = () => {
 						}}>
 						Save
 					</button>
+
 					<Link className="mt-3 w-100 text-center" to="/">
 						Go back to contacts
 					</Link>
