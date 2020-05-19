@@ -15,7 +15,7 @@ export const Contacts = () => {
 	return (
 		<div className="container">
 			<div className="row">
-				<div className="col">
+				<div className="col-12">
 					<select
 						name="agenda"
 						className="form-control mt-5"
